@@ -39,7 +39,7 @@ schema_view_v1 = get_schema_view(
 
 
 urlpatterns = [
-    path('api_auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # path('api_auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/', include('user.urls')),
     path('admin/', admin.site.urls),
     re_path(r'^swagger(?P<format>\.json|\.yaml)$',
