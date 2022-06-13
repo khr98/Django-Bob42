@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}?after"
+    />
+    <title>밥먹는 42</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="header-title">
+        <a href="/"> <span class="highlight">밥먹기</span></a>
+      </h1>
+      <a href="/"><span class="header-new">예약 보기</span></a>
+      {% if request.user.id %}
+      <a href="/"><span class="header-new">로그아웃</span></a>
+      {% else %}
+      <a
+        href="https://api.intra.42.fr/oauth/authorize?client_id=b7fde075ee96907bcd893d00ff1f65d5966ccc91f0c9b51202948e488e0cc56a&redirect_uri=http%3A%2F%2F127.0.0.1%3A8000%2Faccounts%2F42seoul%2Flogin&response_type=code"
+        ><span class="header-new">로그인</span></a
+      >
+      {% endif %}
+    </header>
+    {% block content %} {% endblock %}
+  </body>
+</html>
