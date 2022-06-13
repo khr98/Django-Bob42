@@ -9,6 +9,7 @@ import random
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
+from django.conf import settings
 
 
 # Create your views here.
@@ -23,7 +24,7 @@ def randomUser(request):
     randomUser = random.sample(list(totalUser), 1)   # id는 랜덤으로 나올 개수
     serializer = UserSerializer(
         randomUser, many=True)  # 다양한 내용들에 대해 내부적으로도 직렬화
-    return Response(serializer.data)
+    return render(request, template_name='main.html', context={'people':serializer.data})
 
 
 class TaskListAPIView(APIView):
@@ -77,3 +78,25 @@ class TaskDetailAPIView(APIView):
         post = self.get_object(pk, is_complete=True)
         post.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+# def seoul42_login(request):
+#     rest_api_key = getattr(settings, 'KAKAO_REST_API_KEY')
+#     return redirect(
+#         f"https://kauth.kakao.com/oauth/authorize?client_id={rest_api_key}&redirect_uri={KAKAO_CALLBACK_URI}&response_type=code"
+#     )
+
+class Seoul42LoginAPIView(APIView):
+    def get(self, request):
+        if request.query_params:
+            code = request.query_params.get('code', None)
+            print(code)
+        totalUser = User.objects.all()  # 모델로 만들어진 객체를 모두 가져오기
+        randomUser = random.sample(list(totalUser), 1)   # id는 랜덤으로 나올 개수
+        serializer = UserSerializer(
+        randomUser, many=True)  # 다양한 내용들에 대해 내부적으로도 직렬화
+        
+        return render(request, template_name='main.html', context={'people':serializer.data})
+    
+# class Seoul42LoginCallBackApi(APIView):
+
+    

@@ -1,0 +1,26 @@
+.list-reviews {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.list-review {
+  margin: 0 30px;
+  background-color: var(--lm-gray);
+  border-radius: 5px;
+  margin: 20px;
+  padding: 20px;
+  width: 200px;
+  height: 400px;
+}
+
+.list-poster {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.list-item {
+  font-weight: bold;
+  color: var(--d-gray);
+}
